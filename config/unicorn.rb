@@ -9,11 +9,11 @@ else
   socket = "#{ENV['UNICORN_SOCKET_DIR']}/unicorn"
   preload = true
   processes = 6
+  stdout_path       "#{rails_root}/log/unicorn.log"
+  stderr_path       "#{rails_root}/log/unicorn.log"
 end
 
 pid               "#{rails_root}/tmp/pids/unicorn.pid"
-stderr_path       "#{rails_root}/log/unicorn.log"
-stdout_path       "#{rails_root}/log/unicorn.log"
 worker_processes  processes
 listen            socket, :backlog => 1024
 preload_app       preload

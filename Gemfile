@@ -14,18 +14,22 @@ gem "active_model_serializers"
 gem "unicorn"
 
 group :development do
-  gem "sprint"
+  gem "spring"
 end
 
 group :doc do
   gem "sdoc"
 end
 
+group :test do
+  gem "vcr"
+end
+
 group :development, :test do
-  gem "debugger"
-  gem "debugger-xml"
+  gem "quiet_assets"
   gem "factory_girl"
   gem "factory_girl_rails"
   gem "rspec"
   gem "rspec-rails"
+  gem "spring-commands-rspec"
 end
