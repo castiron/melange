@@ -53,6 +53,7 @@ GEM
     factory_girl_rails (4.4.1)
       factory_girl (~> 4.4.0)
       railties (>= 3.0.0)
+    high_voltage (2.2.0)
     hike (1.2.3)
     i18n (0.6.9)
     jquery-rails (3.1.1)
@@ -165,6 +166,7 @@ DEPENDENCIES
   devise
   factory_girl
   factory_girl_rails
+  high_voltage (~> 2.2.0)
   jquery-rails
   pg
   quiet_assets

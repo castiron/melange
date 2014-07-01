@@ -12,6 +12,7 @@ gem "jquery-rails"
 gem "turbolinks"
 gem "active_model_serializers"
 gem "unicorn"
+gem "high_voltage", "~> 2.2.0"
 
 group :development do
   gem "spring"
