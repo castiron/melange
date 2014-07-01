@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
 
-  resources :accounts
+  match '/*path' => 'application#options', :via => :options
 
-  devise_for :users
+  resources :accounts, defaults: {format: :json}
+
+  devise_for :users, controllers: { sessions: "sessions" }
   root to: "dashboard#index"
 
   get "dashboard/index"

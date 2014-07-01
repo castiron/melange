@@ -11,6 +11,7 @@ class AccountsController < ApplicationController
 
   # GET /accounts/1
   def show
+    respond_with @account
   end
 
   # GET /accounts/new
