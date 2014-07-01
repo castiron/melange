@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  use_doorkeeper
+
   match '/*path' => 'application#options', :via => :options
 
   resources :accounts, defaults: {format: :json}

@@ -13,6 +13,9 @@ gem "turbolinks"
 gem "active_model_serializers"
 gem "unicorn"
 gem "high_voltage", "~> 2.2.0"
+gem "doorkeeper"
+gem "rack-cors", :require => "rack/cors"
+
 
 group :development do
   gem "spring"
