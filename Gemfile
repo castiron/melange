@@ -6,16 +6,14 @@ gem "uglifier", ">= 1.3.0"
 gem "coffee-rails", "~> 4.0.0"
 
 gem "pg"
-gem "devise"
 gem "state_machine"
 gem "jquery-rails"
 gem "turbolinks"
 gem "active_model_serializers"
 gem "unicorn"
 gem "high_voltage", "~> 2.2.0"
-gem "doorkeeper"
 gem "rack-cors", :require => "rack/cors"
-
+gem "bcrypt", "~> 3.1.5"
 
 group :development do
   gem "spring"

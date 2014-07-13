@@ -1,14 +1,7 @@
+require 'bcrypt'
 class User < ActiveRecord::Base
 
-  # Validations
-  # Nota Bene: email and password validation is coming from Devise :validatable
-
-  # Concerns
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable,
-         :confirmable, :lockable
-
-
-
-
+  include Authenticatable
+  validates :email, :first_name, :last_name, presence: true
+  validates :email, uniqueness: true
 end

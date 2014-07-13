@@ -1,12 +1,19 @@
 Rails.application.routes.draw do
 
-  use_doorkeeper
-
   match '/*path' => 'application#options', :via => :options
 
-  resources :accounts, defaults: {format: :json}
+  namespace :api do
+    namespace :v1 do
+      resources :accounts, defaults: {format: :json}
+      resources :users, except: [:new, :edit], defaults: {format: :json}
+      resources :api_keys, only: [:create, :destroy, :index], defaults: {format: :json} do
+        member do
+          post "refresh"
+        end
+      end
+    end
+  end
 
-  devise_for :users, controllers: { sessions: "sessions" }
   root to: "dashboard#index"
 
   get "dashboard/index"

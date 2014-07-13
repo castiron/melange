@@ -37,13 +37,6 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
-  # TODO: Add this to production config too.
-  config.middleware.use Rack::Cors do
-    allow do
-      origins '*'
-      resource '*', :headers => :any, :methods => [:get, :put, :patch, :delete, :post, :options]
-    end
-  end
 
 
 end
