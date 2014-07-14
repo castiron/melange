@@ -14,6 +14,29 @@ RSpec.describe Api::V1::ApiKeysController, :type => :controller do
 
   describe "POST create" do
 
+    before :each do
+      @credentials = { :password => 'testtest123', :email => 'test1@castironcoding.com' }
+      allow(User).to receive(:authenticate) { build :user, @credentials }
+    end
+
+    describe "with valid credentials" do
+      it "creates a new API key" do
+        post :create, {format: 'json'}.merge(@credentials), valid_session
+        expect(assigns(:api_key)).to be_a(ApiKey)
+      end
+
+      # it "assigns a newly created user as @user" do
+      #   post :create, {format: 'json', user: attributes_for(:user)}, valid_session
+      #   expect(assigns(:user)).to be_a(User)
+      #   expect(assigns(:user)).to be_persisted
+      # end
+
+      # it "returns the location of the newly created resource" do
+      #   post :create, {format: 'json', user: attributes_for(:user)}, valid_session
+      #   expect(response.location).to_not be_nil
+      # end
+    end
+
   end
 
   #describe "GET show" do

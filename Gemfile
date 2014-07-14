@@ -14,6 +14,7 @@ gem "unicorn"
 gem "high_voltage", "~> 2.2.0"
 gem "rack-cors", :require => "rack/cors"
 gem "bcrypt", "~> 3.1.5"
+gem "warden"
 
 group :development do
   gem "spring"

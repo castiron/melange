@@ -27,6 +27,9 @@ module Melange
       end
     end
 
+    config.middleware.insert_after ActionDispatch::Flash, Warden::Manager do |manager|
+      manager.failure_app = UnauthorizedController
+    end
 
   end
 end

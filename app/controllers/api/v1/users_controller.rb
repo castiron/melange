@@ -3,8 +3,10 @@ module Api
     class UsersController < ApplicationController
 
       respond_to :json
+      skip_before_filter :authenticate!
 
       def index
+        authenticate!
         @users = User.all
         respond_with :api, :v1, @users
       end
@@ -14,6 +16,8 @@ module Api
         @user.save
         respond_with :api, :v1, @user
       end
+
+      protected
 
       def user_params
         params.require(:user).permit(:email, :password, :first_name, :last_name)
