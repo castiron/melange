@@ -5,6 +5,11 @@ module Authenticatable
     has_secure_password
   end
 
+  def authenticatable?
+    # Placeholder for implementing account lockouts, for example.
+    true
+  end
+
   def update_tracked_fields(ip_address)
     old_current, new_current = self.current_sign_in_at, Time.now.utc
     self.last_sign_in_at     = old_current || new_current

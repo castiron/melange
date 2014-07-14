@@ -28,6 +28,8 @@ module Melange
     end
 
     config.middleware.insert_after ActionDispatch::Flash, Warden::Manager do |manager|
+      Warden::Strategies.add(:api_key, ApiKeyStrategy) # Autoloaded from app/strategies
+      manager.default_strategies :api_key
       manager.failure_app = UnauthorizedController
     end
 
