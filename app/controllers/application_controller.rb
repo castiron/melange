@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate!
-    warden.authenticate!
+    @current_user = warden.authenticate!(:scope => :user, :store => false)
   end
 
 end

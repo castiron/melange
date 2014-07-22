@@ -7,6 +7,10 @@ module Tokenable
     validates :token, presence: true
   end
 
+  def valid_token?
+    self.expires_at > Time.now
+  end
+
   protected
 
   def refresh

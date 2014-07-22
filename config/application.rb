@@ -21,6 +21,8 @@ module Melange
     # config.i18n.default_locale = :de
 
     config.middleware.insert_after ActionDispatch::Flash, Warden::Manager do |manager|
+      Warden::Strategies.add(:api_key, ApiKeyStrategy) # Autoloaded from app/strategies
+      manager.default_strategies :api_key
       manager.failure_app = UnauthorizedController
     end
 
@@ -30,6 +32,5 @@ module Melange
         resource '*', :headers => :any, :methods => [:get, :put, :patch, :delete, :post, :options]
       end
     end
-
   end
 end
