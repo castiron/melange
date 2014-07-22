@@ -20,15 +20,15 @@ module Melange
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
-    config.middleware.use Rack::Cors do
+    config.middleware.insert_after ActionDispatch::Flash, Warden::Manager do |manager|
+      manager.failure_app = UnauthorizedController
+    end
+
+    config.middleware.insert_before Warden::Manager, Rack::Cors do
       allow do
         origins '*'
         resource '*', :headers => :any, :methods => [:get, :put, :patch, :delete, :post, :options]
       end
-    end
-
-    config.middleware.insert_after ActionDispatch::Flash, Warden::Manager do |manager|
-      manager.failure_app = UnauthorizedController
     end
 
   end
