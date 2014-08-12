@@ -10,8 +10,9 @@ class UnauthorizedController < ActionController::Metal
   end
 
   def respond
+    myvar = env
     self.status = 401
     self.content_type = request.format.to_s
-    self.response_body = { :error => 'Login token is invalid.' }.to_json
+    self.response_body = { :errors => ['Login token is invalid.'] }.to_json
   end
 end

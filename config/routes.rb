@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :accounts, defaults: {format: :json}
       resources :users, except: [:new, :edit], defaults: {format: :json}
-      resources :api_keys, only: [:create, :destroy, :index], defaults: {format: :json} do
+      resources :api_keys, only: [:create, :destroy, :index, :show], defaults: {format: :json} do
         member do
           post "refresh"
         end

@@ -19,8 +19,13 @@ module Api
           @api_key.save
           respond_with :api, :v1, @api_key
         else
-          render :json => {:errors => 'Your username or password were incorrect.'}, :status => 401
+          render :json => {:success => false, :errors => ["The email or password you entered is incorrect."]}, :status => 400
         end
+      end
+
+      def show
+        @api_key = ApiKey.where(token: params[:id]).first
+        respond_with :api, :v1, @api_key
       end
 
       protected

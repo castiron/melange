@@ -16,6 +16,7 @@ class ApiKeyStrategy < ::Warden::Strategies::Base
   def authenticate!
     token, token_options = token_and_options(headers['AUTHORIZATION'])
     key = ApiKey.find_by({token: token})
+    myvar = headers
     if key && key.valid_token?
       user = key.user
       if user && user.authenticatable?
@@ -31,11 +32,11 @@ class ApiKeyStrategy < ::Warden::Strategies::Base
   protected
 
   def token_and_options(header)
-    token = header.to_s.match(/^Token (.*)/) { |m| m[1] }
+    token = header.to_s.match(/^Melange(.*)/) { |m| m[1] }
     if token
       begin
         values = Hash[token.split(',').map do |value|
-          value.strip!                      # remove any spaces between commas and values
+            value.strip!                      # remove any spaces between commas and values
           key, value = value.split(/\=\"?/) # split key=value pairs
           value.chomp!('"')                 # chomp trailing " in value
           value.gsub!(/\\\"/, '"')          # unescape remaining quotes
