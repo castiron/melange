@@ -36,7 +36,7 @@ class ApiKeyStrategy < ::Warden::Strategies::Base
     if token
       begin
         values = Hash[token.split(',').map do |value|
-            value.strip!                      # remove any spaces between commas and values
+          value.strip!                      # remove any spaces between commas and values
           key, value = value.split(/\=\"?/) # split key=value pairs
           value.chomp!('"')                 # chomp trailing " in value
           value.gsub!(/\\\"/, '"')          # unescape remaining quotes

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 100) do
+ActiveRecord::Schema.define(version: 20140823134624) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 100) do
     t.decimal  "balance"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_individual"
   end
 
   create_table "api_keys", force: true do |t|
