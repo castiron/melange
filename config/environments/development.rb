@@ -38,6 +38,9 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
 
+  path_rejector = lambda { |s| s.include?("app/strategies") }
+  config.eager_load_paths = config.eager_load_paths.reject(&path_rejector)
+  ActiveSupport::Dependencies.autoload_paths.reject!(&path_rejector)
 
 end
 
