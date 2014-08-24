@@ -1,11 +1,13 @@
 class Api::V1::AccountsController < ApplicationController
+
   before_action :set_account, only: [:show, :edit, :update, :destroy]
+  after_filter :only => [:index] {set_pagination_headers(:accounts)}
 
   respond_to :json
 
   # GET /accounts
   def index
-    @accounts = Account.all
+    @accounts = Account.ordered(index_params[:order_by], index_params[:order_asc]).page(index_params[:page]).per(index_params[:per])
     respond_with @accounts
   end
 
@@ -59,4 +61,10 @@ class Api::V1::AccountsController < ApplicationController
   def account_params
     params.require(:account).permit(:name, :primary_contact_id, :active, :balance)
   end
+
+  def index_params
+    params.permit([:order_by, :order_asc, :page, :per])
+  end
+
+
 end

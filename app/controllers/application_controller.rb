@@ -22,4 +22,18 @@ class ApplicationController < ActionController::Base
     @current_user = warden.authenticate!(:scope => :user, :store => false)
   end
 
+  protected
+
+  def set_pagination_headers(name, options = {})
+    scope = instance_variable_get("@#{name}")
+    request_params = request.query_parameters
+
+    page = {}
+    page[:total_pages] = scope.total_pages
+    page[:first_page] = scope.first_page?
+    page[:last_page] = scope.last_page?
+    page[:current_page] = scope.current_page
+    headers[:Pagination] = page.to_json
+  end
+
 end
